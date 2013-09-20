@@ -32,7 +32,7 @@ class condor {
 	package { condor-python: name => "condor-python.x86_64", ensure => installed }
    # QMF contrib is dead.  This package is no longer distributed and we must purge it
    # to be able to upgrade HTCondor.
-	package { condor-qmf: name => "condor-qmf.x86_64", ensure => purged }
+	#package { condor-qmf: name => "condor-qmf.x86_64", ensure => purged }
 
 	# NOTE: this ensure condor isn't set to run on reboot but does not necessiarly start it
    service { "condor":
@@ -76,10 +76,13 @@ class condor {
 		require => Package["condor"],
 	}
 
-	# create condor_config.local if missing, but do not maintain it
+	# create condor_config.local if missing
+	# ... which now it isn't, and it has stuff by default, which is -evil-
+	# bad badgers bad!
 	file { "/etc/condor/condor_config.local":
 		owner   => "root", group => "root", mode => 644,
 		ensure  => present,
+		source  => "puppet:///modules/condor/condor_config.local",
 		require => Package["condor"],
 	}
 
@@ -161,6 +164,12 @@ class condor {
                ensure  => present,
                owner   => "root", group => "root", mode => 644,
                source => "puppet:///modules/condor/config.d/09-${condorCustom09}",
+               require => Package["condor"],
+            }
+            file { "/etc/condor/config.d/09-carltest":
+               ensure  => present,
+               owner   => "root", group => "root", mode => 644,
+               content => "## TEST ${condorCustom09}",
                require => Package["condor"],
             }
          }

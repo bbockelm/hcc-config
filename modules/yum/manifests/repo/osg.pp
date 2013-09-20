@@ -51,7 +51,7 @@ class yum::repo::osg {
 			descr => "OSG Software for Enterprise Linux $lsbmajdistrelease - Upcoming - \$basearch",
 #			mirrorlist => "http://repo.grid.iu.edu/mirror/3.0/el$lsbmajdistrelease/osg-upcoming-release/\$basearch",
 			baseurl => "http://t2.unl.edu/osg/3.0/el$lsbmajdistrelease/osg-upcoming-release/\$basearch",
-			enabled => 0,
+			enabled => 1,
 		 	gpgcheck => 1,
 			gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-OSG',
 			failovermethod => 'priority',
@@ -171,7 +171,7 @@ class yum::repo::osg {
       'osg-development-debug':
          descr => "OSG Software for Enterprise Linux $lsbmajdistrelease - Development - \$basearch - Debug",
   #       mirrorlist => "http://repo.grid.iu.edu/mirror/3.0/el$lsbmajdistrelease/osg-development/\basearch/debug",
-			baseurl => "http://t2.unl.edu/osg/3.0/el$lsbmajdistrelease/osg-development/\basearch/debug",
+			baseurl => "http://t2.unl.edu/osg/3.0/el$lsbmajdistrelease/osg-development/\$basearch/debug",
          enabled => 0,
          gpgcheck => 1,
          gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-OSG',
@@ -204,7 +204,7 @@ class yum::repo::osg {
       'osg-upcoming-development-debug':
          descr => "OSG Software for Enterprise Linux $lsbmajdistrelease - Upcoming Development - \$basearch - Debug",
   #       mirrorlist => "http://repo.grid.iu.edu/mirror/3.0/el$lsbmajdistrelease/osg-upcoming-development/\basearch/debug",
-			baseurl => "http://t2.unl.edu/osg/3.0/el$lsbmajdistrelease/osg-upcoming-development/\basearch/debug",
+			baseurl => "http://t2.unl.edu/osg/3.0/el$lsbmajdistrelease/osg-upcoming-development/\$basearch/debug",
          enabled => 0,
          gpgcheck => 1,
          gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-OSG',

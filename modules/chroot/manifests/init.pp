@@ -3,9 +3,9 @@ class chroot (
   ) inherits chroot::params {
 
   # FIXME: Duplicate definition of chroot5
-  #package { 'chroot-tool':
-  #  ensure  => present,
-  #}
+  package { 'chroot-tool':
+    ensure  => present,
+  }
 
   # FIXME: Duplicate definition of chroot5
   # Create /chroot directory

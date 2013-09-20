@@ -10,7 +10,7 @@
 		OSG: the client is now installed from RPMs
 		You shouldn't need to source a setup.sh anymore
 
-		CRAB: source /opt/CRAB/CRAB_2_8_7_patch2/crab.sh
+		CRAB: source /opt/CRAB/CRAB_2_9_1/crab.sh
 
 		CMSSW: source /opt/osg/app/cmssoft/cms/cmsset_default.sh
 

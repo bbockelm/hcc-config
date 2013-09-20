@@ -118,7 +118,7 @@ JOB_ROUTER_ENTRIES = \
      set_Requirements = (my.OriginalRequirements) && (my.HasLocalCustomizations =?= true) && (target.IS_GLIDEIN=!=TRUE || target.GLIDECLIENT_Group=?="T2Overflow"); \
      set_HasLocalCustomizations = true; \
      set_WantIOProxy = true; \
-     set_RequestedChroot = "SL5"; \
+     set_RequestedChroot = "SL6"; \
      /* Some ClassAds tap-dancing to do minimum requests. */ \
      copy_RequestCpus = "OriginalRequestCpus"; \
      eval_set_RequestCpus = ifThenElse(isUndefined(OriginalRequestCpus), 1, OriginalRequestCpus); \
@@ -144,4 +144,7 @@ SCHEDD_AUDIT_LOG = $(LOG)/AuditLog
 SCHEDD_DEBUG = D_AUDIT
 MAX_SCHEDD_AUDIT_LOG = 1d
 MAX_NUM_SCHEDD_AUDIT_LOG = 90
+
+# Add "red-condor" to the queue super-users (that is, the daemons on the collector)
+QUEUE_SUPER_USERS = root, condor, red-condor
 

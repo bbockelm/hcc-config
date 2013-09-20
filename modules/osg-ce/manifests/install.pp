@@ -1,6 +1,7 @@
 class osg-ce::install {
 
-	package { $osg-ce::params::ce_package_name:
+	# used to be from params ... can't use - in class names now, FIXME FIXME FIXME
+	package { 'osg-ce-condor':
 		ensure => present,
 	}
 

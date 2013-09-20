@@ -5,8 +5,10 @@ START = False
 NEGOTIATOR_CONSIDER_PREEMPTION=True
 # Enable preemption, but don't allow it to actually do things.
 # This should allow us to effectively measure preemption costs.
-PREEMPTION_REQUIREMENTS = (SubmitterGroup isnt null) && (RemoteGroup isnt null) && regexp("^cms\.", SubmitterGroup) && (RemoteGroup =?= "other")
-PREEMPTION_RANK = 0
+PREEMPTION_REQUIREMENTS = ((SubmitterGroup isnt null) && (RemoteGroup isnt null) && regexp("^cms\.", SubmitterGroup) && (RemoteGroup =?= "other")) && ifThenElse(QueueAge isnt null, QueueAge > 7200, true)
+RECORD_POTENTIAL_PREEMPTION = (SubmitterGroup isnt null) && (RemoteGroup isnt null) && regexp("^cms\.", SubmitterGroup) && (RemoteGroup =?= "other")
+PREEMPTION_RANK = -ifThenElse(UncommittedTime isnt null, UncommittedTime, 0)
+PREEMPTION_RANK = -ifThenElse((PILOT_LAST_JOB_START isnt null) && (PILOT_LAST_JOB_START > JobStart) && (PILOT_LAST_JOB_START < time()), time()-PILOT_LAST_JOB_START, time()-JobStart)
 
 # Workaround for priority inversion - per
 # https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3271

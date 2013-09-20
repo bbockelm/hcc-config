@@ -1,0 +1,10 @@
+  113  iscsiadm -m discovery -t st -p 192.168.130.101 -I iscsiadm -m node -T iqn.1984-05.com.dell:powervault.md3600i.6782bcb0005fa303000000004ea5277b -p 192.168.130.101:3260 -I iface0 --login
+  114  iscsiadm -m node -T iqn.1984-05.com.dell:powervault.md3600i.6782bcb0005fa303000000004ea5277b -p 192.168.130.101:3260 -I iface0 --login
+  138  history | grep login
+  139  iscsiadm -m node -T iqn.1984-05.com.dell:powervault.md3600i.6782bcb0005fa303000000004ea5277b -p 192.168.130.101:3260 -I iface0 --login
+  143  iscsiadm -m node -T iqn.1984-05.com.dell:powervault.md3600i.6782bcb0005fa303000000004ea5277b -p 192.168.130.101:3260 -I iface0 --login
+  153  iscsiadm -m node -T iqn.1984-05.com.dell:powervault.md3600i.6782bcb0005fa303000000004ea5277b -p 192.168.131.101:3260 -I iface1 --login
+  156  iscsiadm -m node -T iqn.1984-05.com.dell:powervault.md3600i.6782bcb0005fa303000000004ea5277b -p 192.168.131.102:3260 -I iface1 --login
+  157  iscsiadm -m node -T iqn.1984-05.com.dell:powervault.md3600i.6782bcb0005fa303000000004ea5277b -p 192.168.130.102:3260 -I iface0 --login
+  168  history | grep login
+  169  history | grep login > /root/red-vm1-iscsi-login

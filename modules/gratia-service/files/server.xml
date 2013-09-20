@@ -1,0 +1,50 @@
+<!--
+##############################################################################
+##############################################################################
+#
+#  DO NOT EDIT - file is being maintained by puppet
+#
+##############################################################################
+##############################################################################
+-->
+<Server port="8005" shutdown="SHUTDOWN">
+  <Service name="Catalina">
+
+       <Connector port="8880" maxHttpHeaderSize="8192"
+               maxThreads="150" minSpareThreads="25" maxSpareThreads="75"
+               enableLookups="false"
+               redirectPort="8443"
+               acceptCount="100"
+               connectionTimeout="20000" disableUploadTimeout="true" />
+
+       <Connector port="8443" SSLEnabled="true"
+               maxThreads="150" minSpareThreads="25" maxSpareThreads="75"
+               enableLookups="false" disableUploadTimeout="true"
+               acceptCount="100" debug="0" scheme="https" secure="true"
+               sSLImplementation="org.glite.security.trustmanager.tomcat.TMSSLImplementation"
+               trustStoreDir="/etc/grid-security/certificates"
+               sslCertFile="/etc/grid-security/http/httpcert.pem"
+               sslKey="/etc/grid-security/http/httpkey.pem"
+               crlUpdateInterval="2h"
+               log4jConfFile="/usr/share/tomcat5/conf/log4j-trustmanager.properties"
+               clientAuth="true" sslProtocol="TLS" 
+               crlEnabled="true" crlRequired="true"/>
+
+    <Engine name="Catalina" defaultHost="localhost">
+        <Valve className="org.apache.catalina.valves.FastCommonAccessLogValve"
+               directory="/var/log/gratia/access"
+               prefix="access.log."
+               resolveHosts="false"
+               rotatable="true"
+               fileDateFormat="yyyy-MM-dd"/>
+      <Host name="localhost" appBase="webapps"
+       unpackWARs="false" autoDeploy="false"
+       xmlValidation="false" xmlNamespaceAware="false"/>
+    </Engine>
+
+    <Engine name="Catalina" defaultHost="localhost">
+
+      <Host name="localhost" appBase="webapps" />
+    </Engine>
+  </Service>
+</Server>

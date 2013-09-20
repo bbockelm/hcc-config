@@ -15,6 +15,16 @@ node 'phedex.unl.edu' inherits red-public {
 	include nrpe
 }
 
+node 'phedex-new.unl.edu' inherits red-public {
+	$mountsHDFS = true
+   $isPHEDEX = true   
+	$sshExtraAdmins = [ 'barrefors', ]
+	$sudoExtraAdmins = [ 'barrefors', ]
+	include general
+	include ganglia
+	include hadoop
+	include nrpe
+}
 node 'brian-test.unl.edu' inherits red-public {
 	$mountsHDFS = true
 	include general
@@ -194,7 +204,7 @@ node 't3.unl.edu' inherits red-public {
 	$mountsHDFS = true
 	$isCondorSubmitter = true
    $ntp_server_local = true
-   $yum_extrarepo = [ 'epel', 'nebraska', 'osg' ]
+   $yum_extrarepo = [ 'epel', 'nebraska','hcc','osg' ]
 
 	# ldap override so users can change password
 	$users_ldap_servers = [ "hcc-ldap01.unl.edu", "hcc-ldap04.unl.edu" ]

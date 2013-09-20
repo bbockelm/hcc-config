@@ -1,0 +1,11 @@
+---
+sshadmins:
+    - gattebury
+      clundst
+      bbockelm
+
+condor_roles:
+    - worker
+      submitter
+
+ntpserver: 1.pool.ntp.org

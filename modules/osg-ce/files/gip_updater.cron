@@ -1,0 +1,1 @@
+0 3 * * * cmssoft /opt/osg/app/etc/gip_updater.sh

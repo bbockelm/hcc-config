@@ -652,7 +652,7 @@ sub submit
             Globus::GRAM::Error::TEMP_SCRIPT_FILE_FAILED());
     }
 
-    $rc = print SCRIPT_FILE "+RequestedChroot=\"SL5\"\n";
+    $rc = print SCRIPT_FILE "+RequestedChroot=\"SL6\"\n";
     if (!$rc)
     {       
         return $self->respond_with_failure_extension(

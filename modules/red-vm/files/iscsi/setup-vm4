@@ -1,0 +1,6 @@
+#!/bin/sh
+
+iscsiadm -m iface -I iface0 --op=new
+iscsiadm -m iface -I iface0 --op=update -n iface.hwaddress -v 00:10:18:69:9b:2c
+iscsiadm -m iface -I iface1 --op=new
+iscsiadm -m iface -I iface1 --op=update -n iface.hwaddress -v 00:10:18:69:9b:2e

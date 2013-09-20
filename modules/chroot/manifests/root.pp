@@ -22,7 +22,8 @@ define chroot::root (
   }
 
   file { "/etc/chroot-tool/yum-$name.conf":
-    source  => $yum,
+#    source  => $yum,
+    source  => "puppet:///modules/chroot/yum-$name.conf",
     require => Package["chroot-tool"],
     before  => Exec["chroot-create-$name"],
   }
@@ -80,11 +81,11 @@ define chroot::root (
     require => Chroot::Mount[$root_dir],
   }
 
-  # Register with autofs
-  autofs::add_map { "autofs for chroot ${base_dir}":
-    map        => '/etc/auto.cvmfs',
-    mountpoint => "${base_dir}/root/cvmfs",
-    require => Chroot::Mount[$root_dir],
-  }
+#  # Register with autofs
+#  autofs::add_map { "autofs for chroot ${base_dir}":
+#    map        => '/etc/auto.cvmfs',
+#    mountpoint => "${base_dir}/root/cvmfs",
+#    require => Chroot::Mount[$root_dir],
+#  }
 
 }

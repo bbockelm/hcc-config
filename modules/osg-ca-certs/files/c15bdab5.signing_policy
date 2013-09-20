@@ -1,0 +1,5 @@
+# HCC Puppet CA
+#
+ access_id_CA      X509     '/CN=Puppet CA: red-man.unl.edu'
+ pos_rights        globus   CA:sign
+ cond_subjects     globus   '"/CN=*.red.hcc.unl.edu"'

@@ -14,7 +14,7 @@ if( -e "/mnt/hadoop/hello_world")
                 print "Root Hadoop Mount OK = FALSE\n";
         }
 
-if( -e "/chroot/sl5-v5/root/mnt/hadoop/hello_world")
+if( -e "/chroot/sl6-v1/root/mnt/hadoop/hello_world")
         {
                 print "Chroot Hadoop Mount OK = TRUE\n";
         }
@@ -22,15 +22,15 @@ if( -e "/chroot/sl5-v5/root/mnt/hadoop/hello_world")
         {
                 print "Chroot Hadoop Mount OK = FALSE\n";
         }
-if( -e "/cvmfs/cms.cern.ch/cmsset_default.sh")
-	{
-		print "CVMFS_OK = TRUE\n";
-	}
-	else
-	{
-		print "CVMFS_OK = FALSE\n";
-	}
-if( -e "/chroot/sl5-v5/root/cvmfs/cms.cern.ch/cmsset_default.sh")
+#if( -e "/cvmfs/cms.cern.ch/cmsset_default.sh")
+#	{
+#		print "CVMFS_OK = TRUE\n";
+#	}
+#	else
+#	{
+#		print "CVMFS_OK = FALSE\n";
+#	}
+if( -e "/chroot/sl6-v1/root/cvmfs/cms.cern.ch/cmsset_default.sh")
    {
       print "CHROOT_CVMFS_OK = TRUE\n";
    }

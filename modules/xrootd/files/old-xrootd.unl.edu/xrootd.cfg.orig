@@ -1,0 +1,35 @@
+xrd.port any
+xrd.port 1094 if xrootd.unl.edu
+
+xrootd.fslib /usr/lib64/libXrdOfs.so
+ofs.osslib /usr/lib64/libXrdHdfs.so
+ofs.authorize 1
+
+oss.localroot /mnt/hadoop
+all.export /hello_world forcero
+all.export /
+xrootd.trace emsg login stall redirect
+ofs.trace all -debug
+xrd.trace conn
+cms.trace all
+
+all.role server
+all.role manager if xrootd.unl.edu
+
+all.manager xrootd.unl.edu:1213
+
+cms.allow host *
+
+xrootd.seclib /usr/lib64/libXrdSec.so
+
+sec.protocol /usr/lib64 gsi -certdir:/etc/grid-security/certificates -cert:/etc/grid-security/xrd/xrdcert.pem -key:/etc/grid-security/xrd/xrdkey.pem -crl:3
+
+acc.authdb /etc/xrootd/Authfile
+acc.audit deny grant
+
+all.adminpath /var/run/xrootd
+cms.pidpath /var/run/xrootd
+
+cms.delay startup 10
+cms.fxhold 60s
+

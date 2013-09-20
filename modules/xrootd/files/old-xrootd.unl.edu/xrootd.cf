@@ -1,0 +1,70 @@
+# Port specifications; only the redirector needs to use a well-known port
+# "any" will cause rooted to bind to any available port.  Change as needed for firewalls.
+xrd.port 1094
+
+# The roles this server will play.
+all.role server
+#all.role manager if xrootd.unl.edu
+all.role meta manager if xrootd.unl.edu
+# The known managers
+#all.manager xrootd.unl.edu 1213
+all.manager meta xrootd.unl.edu:1213
+#all.manager cmswn045.fnal.gov:1213
+#all.manager xrootd.ultralight.org:1213
+
+# Allow any path to be exported; this is further refined in the authfile.
+all.export /
+
+# Hosts allowed to use this xrootd cluster
+cms.allow host *
+#cms.allow host *.ultralight.org
+#cms.allow host *.unl.edu
+
+### Standard directives
+# Simple sites probably don't need to touch these.
+# Logging verbosity
+xrootd.trace emsg login stall redirect
+ofs.trace all debug
+xrd.trace all debug
+cms.trace all debug
+
+# Integrate with CMS TFC, placed in /etc/storage.xml
+#oss.namelib /usr/lib64/libXrdCmsTfc.so file:/etc/storage.xml?protocol=hadoop
+
+# Turn on authorization
+ofs.authorize 1
+acc.authdb /etc/xrootd/Authfile
+acc.audit deny grant
+
+# Security configuration
+#sec.protocol /usr/lib64 gsi -certdir:/etc/grid-security/certificates -cert:/etc/grid-security/xrd/xrdcert.pem -key:/etc/grid-security/xrd/xrdkey.pem
+
+xrootd.seclib /usr/lib64/libXrdSec.so
+xrootd.fslib /usr/lib64/libXrdOfs.so
+#ofs.osslib /usr/lib64/libXrdHdfs.so
+all.adminpath /var/run/xrootd
+all.pidpath /var/run/xrootd
+
+cms.delay startup 10 lookup 5 qdl 30 servers 1
+cms.fxhold 60s
+#cms.ping 30 log 10 usage 0
+cms.ping 30
+#cms.sched cpu 0 io 0 runq 100 pag 0 fuzz 15 maxload 20 refreset 3600
+cms.sched cpu 0 io 0 runq 0 pag 0 fuzz 100 refreset 3600
+
+xrd.sched mint 8 maxt 2048 avlt 512 idle 780
+
+xrd.report xrootd.t2.ucsd.edu:9931 every 30s all sync
+xrootd.monitor all auth flush 30s mbuff 1472 window 5s dest files io info redir user xrootd.t2.ucsd.edu:9930
+#xrootd.monitor all auth flush 30s mbuff 1472 window 5s dest files io info user hcc-group4.unl.edu:9930
+
+cms.allow host *.ultralight.org
+cms.allow host *.mit.edu
+#cms.allow host *.ufl.edu
+cms.allow host *.unl.edu
+cms.allow host *.fnal.gov
+cms.allow host *.purdue.edu
+cms.allow host *.ucsd.edu
+cms.allow host *.wisc.edu
+cms.allow host *.vanderbilt.edu
+

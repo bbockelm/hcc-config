@@ -29,6 +29,8 @@ cmsphedex cms.lcgadmin
 lcgadmin cms.lcgadmin
 uscmsPool1396 cms.lcgadmin
 hcc other.hcc
+nova other.special
+fermilab other.special
 osgedu other.osgedu
 osg	other
 cmsprio001   cms.other.prio

@@ -1,0 +1,44 @@
+module node_health2 1.0;
+
+require {
+        type semanage_t;
+		  type etc_t;
+        type postfix_master_t;
+        type usr_t;
+        type postfix_cleanup_t;
+        type fusefs_t;
+        type plymouth_exec_t;
+        type postfix_pickup_t;
+        type nrpe_t;
+        type sudo_exec_t;
+        type sssd_var_lib_t;
+        type system_dbusd_t;
+        class capability sys_admin;
+        class unix_stream_socket connectto;
+        class dir { ioctl search read getattr }
+        class file { ioctl getattr read lock open execute execute_no_trans };
+}
+
+#============= nrpe_t ==============
+allow nrpe_t fusefs_t:dir {ioctl search read getattr};
+allow nrpe_t plymouth_exec_t:file getattr;
+
+
+allow nrpe_t sssd_var_lib_t:file lock;
+
+allow nrpe_t fusefs_t:file { ioctl execute read open getattr execute_no_trans };
+
+#============= postfix_cleanup_t ==============
+allow postfix_cleanup_t nrpe_t:unix_stream_socket connectto;
+
+#============= postfix_master_t ==============
+allow postfix_master_t nrpe_t:unix_stream_socket connectto;
+
+#============= postfix_pickup_t ==============
+allow postfix_pickup_t nrpe_t:unix_stream_socket connectto;
+
+#============= semanage_t ==============
+allow semanage_t nrpe_t:unix_stream_socket connectto;
+
+#============= system_dbusd_t ==============
+allow system_dbusd_t nrpe_t:unix_stream_socket connectto;

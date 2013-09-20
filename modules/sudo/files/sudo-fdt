@@ -1,0 +1,3 @@
+Cmnd_Alias FDT_CMD = /usr/bin/wrapper_fdt.sh, /usr/bin/wrapper_kill.sh
+Runas_Alias FDT_USR = ALL, !root
+fdt ALL=(FDT_USR) NOPASSWD:FDT_CMD

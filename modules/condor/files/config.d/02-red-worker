@@ -86,7 +86,7 @@ MOUNT_UNDER_SCRATCH = /tmp /var/tmp
 # Newer versions of Condor disable PSS by default.
 USE_PSS = true
 
-NAMED_CHROOT = SL5=/
+NAMED_CHROOT = SL6=/
 
 # Sleeper pool startd
 # Added by BB, May 28, 2012
@@ -138,6 +138,12 @@ MaxSuspendTime          = 10 * $(MINUTE)
 PREEMPT = (( Activity == "Suspended") && \
 			($(ActivityTimer) > $(MaxSuspendTime))) \
 			|| $(PREEMPT)
-MAXJOBRETIREMENTTIME = 0
+
+# Preempt instantly unless the preemption was caused by draining.
+MAXJOBRETIREMENTTIME = ifThenElse((Draining =?= true) && (JobStart isnt null) && (LastDrainStartTime isnt null) && (LastDrainStartTime > JobStart), LastDrainStartTime - JobStart + 48*3600, 0)
+
 MachineMaxVacateTime = 10 *$(MINUTE) 
 #
+
+CHIRP_DELAYED_UPDATE_PREFIX = Chirp*, PILOT*, glexec*
+

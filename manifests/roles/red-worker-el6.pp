@@ -15,7 +15,7 @@ class role_red-worker-el6 {
    include osg-wn-client
    include glexec
    include cvmfs
-	include chroot5
+#	include chroot
    include osg-ca-certs
    include hadoop
    include cgroups
@@ -24,30 +24,12 @@ class role_red-worker-el6 {
    include updatedb
 	include selinuxmodules
 
-   # must hard mount OSGAPP and OSGDATA to make RSV probes happy
-   # automounting will not show correct permissions
-   file { "/opt/osg": ensure => directory }
-   file { "/opt/osg/app": ensure => directory }
-   mount { "mount_osg_app":
-      name    => "/opt/osg/app",
-      device  => "hcc-gridnfs:/export/osg/app",
-      fstype  => "nfs",
-      ensure  => mounted,
-      options => "nfsvers=3,rw,noatime,hard,intr,rsize=32768,wsize=32768",
-      atboot  => true,
-      require => [ File["/opt/osg"], File["/opt/osg/app"], ],
-   }
-   
-   file { "/opt/osg/data": ensure => directory }
-   mount { "mount_osg_data":
-      name    => "/opt/osg/data",
-      device  => "hcc-gridnfs:/export/osg/data",
-      fstype  => "nfs",
-      ensure  => mounted,
-      options => "nfsvers=3,rw,noatime,hard,intr,rsize=32768,wsize=32768",
-      atboot  => true,
-      require => [ File["/opt/osg"], File["/opt/osg/data"], ],
-   }
+	chroot::root { 'sl6':
+		version => 1,
+		yum => 'puppet:///common/yum-sl6.conf',
+		rpms => 'acl attr bind-utils cyrus-sasl-plain lsof libcgroup quota rhel-instnum cpuspeed dos2unix m2crypto sssd nc prctl setarch tree unix2dos unzip wget zip zlib glibc-devel perl-Compress-Zlib',
+		rpms_suid => 'osg-wn-client glexec lcmaps-plugins-condor-update lcmaps-plugins-process-tracking lcmaps-plugins-mount-under-scratch',
+	}
 
 	mount { "/home":
 		device  => "t3-nfs:/export/home",
@@ -56,6 +38,63 @@ class role_red-worker-el6 {
 		options => "nfsvers=3,rw,noatime,hard,intr,rsize=32768,wsize=32768",
 		atboot  => true,
 	}
+
+
+
+	###########################
+	### CVMFS static mounts ###
+	###########################
+
+	file { '/chroot/sl6-v1/root/cvmfs':
+		ensure => directory,
+		owner => 'root', group => 'root', mode => '0755',
+		backup => false,
+	}
+	file { '/chroot/sl6-v1/root/cvmfs/cms.cern.ch':
+		ensure => directory,
+		backup => false,
+	}
+	mount { '/chroot/sl6-v1/root/cvmfs/cms.cern.ch':
+		device => 'cms.cern.ch',
+		fstype => 'cvmfs',
+		ensure => mounted,
+		options => 'defaults',
+		remounts => false,
+		atboot => true,
+		require => File['/chroot/sl6-v1/root/cvmfs/cms.cern.ch'],
+	}
+
+	file { '/chroot/sl6-v1/root/cvmfs/oasis.opensciencegrid.org':
+		ensure => directory,
+		backup => false,
+	}
+	mount { '/chroot/sl6-v1/root/cvmfs/oasis.opensciencegrid.org':
+		device => 'oasis.opensciencegrid.org',
+		fstype => 'cvmfs',
+		ensure => mounted,
+		options => 'defaults',
+		remounts => false,
+		atboot => true,
+		require => File['/chroot/sl6-v1/root/cvmfs/oasis.opensciencegrid.org'],
+	}
+
+	file { '/cvmfs':
+		ensure => directory,
+		owner => 'root', group => 'root', mode => '0755',
+		backup => false,
+	}
+	file { '/cvmfs/cms.cern.ch':
+		ensure => link,
+		target => '/chroot/sl6-v1/root/cvmfs/cms.cern.ch',
+		backup => false,
+	}
+	file { '/cvmfs/oasis.opensciencegrid.org':
+		ensure => link,
+		target => '/chroot/sl6-v1/root/cvmfs/oasis.opensciencegrid.org',
+		backup => false,
+	}
+
+
 
 
 	# disable transparent huge pages for now, kernel bug of some kind

@@ -5,8 +5,8 @@ class yum::repo::hcc {
     case $::lsbmajdistrelease {
 
         5: {
-            $hcc_repo_url = 'http://t2.unl.edu/store/repos/hcc/5/hcc/$basearch'
-            $hcc_testing_repo_url = 'http://t2.unl.edu/store/repos/hcc/5/hcc-testing/$basearch'
+            $hcc_repo_url = 'http://t2.unl.edu/store/repos/hcc/5/hcc-el5/$basearch'
+            $hcc_testing_repo_url = 'http://t2.unl.edu/store/repos/hcc/5/hcc-testing-el5/$basearch'
         }
 
         6: {
