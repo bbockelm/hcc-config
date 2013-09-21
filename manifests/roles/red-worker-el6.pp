@@ -95,6 +95,25 @@ class role_red-worker-el6 {
 	}
 
 
+	# legacy /opt/osg/app/cmssoft/cms -> /cvmfs/cms.cern.ch symlink
+	file { '/opt/osg':
+		ensure => directory,
+		backup => false,
+	}
+	file { '/opt/osg/app':
+		ensure => directory,
+		backup => false,
+	}
+	file { '/opt/osg/app/cmssoft':
+		ensure => directory,
+		backup => false,
+	}
+	file { '/opt/osg/app/cmssoft/cms':
+		ensure => link,
+		target => '/cvmfs/cms.cern.ch',
+		backup => false,
+	}
+
 
 
 	# disable transparent huge pages for now, kernel bug of some kind
