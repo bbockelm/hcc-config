@@ -12,7 +12,7 @@ class osg-ce {
 	mount { "/opt/osg/app":
 		device  => "hcc-gridnfs:/osg/app",
 		fstype  => "nfs4",
-		ensure  => mounted,
+		ensure  => absent,
 		options => "rw,noatime,hard,intr,rsize=32768,wsize=32768",
 		atboot  => true,
 		require => File["/opt/osg/app"],
@@ -22,7 +22,7 @@ class osg-ce {
 	mount { "/opt/osg/data":
 		device  => "hcc-gridnfs:/osg/data",
 		fstype  => "nfs4",
-		ensure  => mounted,
+		ensure  => absent,
 		options => "rw,noatime,hard,intr,rsize=32768,wsize=32768",
 		atboot  => true,
 		require => File["/opt/osg/data"],

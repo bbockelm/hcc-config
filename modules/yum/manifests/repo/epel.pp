@@ -24,7 +24,8 @@ class yum::repo::epel {
 
 		'epel':
 			descr => "Extra Packages for Enterprise Linux $lsbmajdistrelease - \$basearch",
-			mirrorlist => "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-$lsbmajdistrelease&arch=\$basearch",
+#			mirrorlist => "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-$lsbmajdistrelease&arch=\$basearch",
+			baseurl => "http://hcc-mirror.unl.edu/fedora/epel/$lsbmajdistrelease/\$basearch",
 			enabled => 1,
 	 		gpgcheck => 1,
 			gpgkey => "file:///etc/pki/rpm-gpg/$epel_gpgkey_filename",
