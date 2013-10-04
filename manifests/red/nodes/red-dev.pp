@@ -14,7 +14,7 @@ node 'red-dev-sl5.unl.edu' inherits red-public {
 
 node 'red-dev-sl6.unl.edu' inherits red-public {
 	$sshExtraAdmins = [ 'acaprez', 'aguru', 'jwang', 'dweitzel', 'bbockelm' ]
-	$sudoExtraAdmins = [ 'acaprez', 'aguru', 'tharvill', 'jthiltge', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm' ]
+	$sudoExtraAdmins = [ 'acaprez', 'aguru', 'tharvill', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm' ]
 
 	include general
 	mount { "/home":

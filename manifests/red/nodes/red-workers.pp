@@ -111,20 +111,20 @@ node 'red-d18n1', 'red-d18n3', 'red-d18n4', 'red-d18n5', 'red-d18n6', 'red-d18n7
 #--- 720xds ---#
 
 node 'red-d21n1', 'red-d21n2', 'red-d21n3', 'red-d21n4', 'red-d21n5', 'red-d21n6', 'red-d21n7', 'red-d21n8', 'red-d21n9', 'red-d21n10', 'red-d21n11', 'red-d21n12', 'red-d21n13', 'red-d21n14', 'red-d21n15', 'red-d21n16' inherits red-private {
-	$role = "red-worker-test"
+	$role = "red-worker-el6"
    $condorCustom09 = "el6"
    $isHDFSDatanode = true
    include general
 }
 
 node 'red-d22n1', 'red-d22n2', 'red-d22n3', 'red-d22n4', 'red-d22n5', 'red-d22n6', 'red-d22n7', 'red-d22n8', 'red-d22n9', 'red-d22n10', 'red-d22n11', 'red-d22n12', 'red-d22n13', 'red-d22n14', 'red-d22n15', 'red-d22n16' inherits red-private {
-	$role = "red-worker-test"
+	$role = "red-worker-el6"
    $condorCustom09 = "el6"
    $isHDFSDatanode = true
    include general
 }
 node 'red-d23n1', 'red-d23n2', 'red-d23n3', 'red-d23n4', 'red-d23n5', 'red-d23n6', 'red-d23n7', 'red-d23n8', 'red-d23n9', 'red-d23n10', 'red-d23n11', 'red-d23n12', 'red-d23n13', 'red-d23n14', 'red-d23n15', 'red-d23n16' inherits red-private {
-	$role = "red-worker-test"
+	$role = "red-worker-el6"
    $condorCustom09 = "el6"
    $isHDFSDatanode = true
    include general

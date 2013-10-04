@@ -4,6 +4,13 @@ node 'hcc-mon.unl.edu' inherits red-public {
 	include general
 }
 
+node 'hcc-schorr-ns1.unl.edu' inherits red-public {
+	$yum_extrarepo = [ 'epel', 'hcc', ]
+    include general
+    include ganglia
+    include nrpe
+}
+
 node 'phedex.unl.edu' inherits red-public {
 	$mountsHDFS = true
    $isPHEDEX = true   
@@ -46,7 +53,7 @@ node 'hcc-derek.unl.edu' inherits red-public {
 node 'hcc-ganglia.unl.edu' inherits red-public {
 	$sshExtraAdmins = [ 'acaprez', 'zzhang' ]
 	$sudoExtraAdmins = [ 'acaprez', ]
-	$yum_extrarepo = [ 'epel', 'nebraska', 'nginx' ]
+	$yum_extrarepo = [ 'epel', 'hcc', 'nginx' ]
 	include general
 	include yum
 }
@@ -106,7 +113,7 @@ node 'hcc-uniquant.unl.edu' inherits red-public {
 
 node 'red-web.unl.edu' inherits red-public {
 	$sshExtraAdmins = [ 'acaprez', 'jwang', 'dweitzel', 'bbockelm' ]
-	$sudoExtraAdmins = [ 'acaprez', 'tharvill', 'jthiltge', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm' ]
+	$sudoExtraAdmins = [ 'acaprez', 'tharvill', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm' ]
 	include general
 }
 
@@ -142,7 +149,7 @@ node 'red-mon.unl.edu' inherits red-public {
 	$sshExtraAdmins = [ 'dweitzel', 'acaprez', ]
 	$sudoExtraAdmins = [ 'dweitzel', 'acaprez', ]
    $pakitiTag = "T2_US_Nebraska"
-	$yum_extrarepo = [ 'epel', 'nebraska', 'osg' ]
+	$yum_extrarepo = [ 'epel', 'hcc', 'osg' ]
 
 	include general
 
@@ -163,7 +170,7 @@ node 'xrootd-itb.unl.edu' inherits red-public {
 
 node 'glidein.unl.edu' inherits red-public {
 	$sshExtraAdmins = [ 'acaprez', 'jwang', 'dweitzel', 'bbockelm' ]
-	$sudoExtraAdmins = [ 'acaprez', 'tharvill', 'jthiltge', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm' ]
+	$sudoExtraAdmins = [ 'acaprez', 'tharvill', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm' ]
 	$pakitiTag = "T2_US_Nebraska"
 	# general discluded intentionally
 	include hosts
@@ -175,7 +182,7 @@ node 'hcc-gridnfs.red.hcc.unl.edu' inherits red-private {
 
 node 't2.unl.edu' inherits red-public {
 	$sshExtraAdmins = [ 'acaprez', 'jwang', 'dweitzel', 'bbockelm' ]
-	$sudoExtraAdmins = [ 'acaprez', 'tharvill', 'jthiltge', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm' ]
+	$sudoExtraAdmins = [ 'acaprez', 'tharvill', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm' ]
 
 	include general
 }
@@ -204,7 +211,7 @@ node 't3.unl.edu' inherits red-public {
 	$mountsHDFS = true
 	$isCondorSubmitter = true
    $ntp_server_local = true
-   $yum_extrarepo = [ 'epel', 'nebraska','hcc','osg' ]
+   $yum_extrarepo = [ 'epel', 'hcc','osg' ]
 
 	# ldap override so users can change password
 	$users_ldap_servers = [ "hcc-ldap01.unl.edu", "hcc-ldap04.unl.edu" ]
@@ -222,7 +229,7 @@ node 't3.unl.edu' inherits red-public {
 	mount { "/opt/osg/app":
 		device  => "hcc-gridnfs:/osg/app",
 		fstype  => "nfs4",
-		ensure  => mounted,
+		ensure  => absent,
 		options => "rw,noatime,hard,intr,rsize=32768,wsize=32768",
 		atboot  => true,
 		require => File["/opt/osg/app"],
@@ -232,7 +239,7 @@ node 't3.unl.edu' inherits red-public {
 	mount { "/opt/osg/data":
 		device  => "hcc-gridnfs:/osg/data",
 		fstype  => "nfs4",
-		ensure  => mounted,
+		ensure  => absent,
 		options => "rw,noatime,hard,intr,rsize=32768,wsize=32768",
 		atboot  => true,
 		require => File["/opt/osg/data"],
@@ -293,7 +300,7 @@ node 'hadoop-tracker.red.hcc.unl.edu' inherits red-private {
 node 'rcf-gratia.unl.edu' inherits red-public {
 
 	$sshExtraAdmins = [ 'acaprez', 'jwang', 'dweitzel', 'bbockelm', 'wbhurst' ]
-	$sudoExtraAdmins = [ 'acaprez', 'tharvill', 'jthiltge', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm', 'wbhurst' ]
+	$sudoExtraAdmins = [ 'acaprez', 'tharvill', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm', 'wbhurst' ]
 
 	include general
 	include ganglia
@@ -310,7 +317,7 @@ node 'rcf-gratia.unl.edu' inherits red-public {
 
 node 'hcc-lsf.unl.edu' inherits red-public {
 	$sshExtraAdmins = [ 'dweitzel' ]
-	$sudoExtraAdmins = [ 'dweitzel', 'jthiltge' ]
+	$sudoExtraAdmins = [ 'dweitzel' ]
 	include general
 	include ganglia
 }

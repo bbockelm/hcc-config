@@ -63,7 +63,7 @@ node basenode {
 	$sudoExtraAdmins = ''
 
 	# base admin list for openssh AllowUsers (override extra in node definitions)
-	$sshAdmins = [ 'gattebury', 'clundst', 'bbockelm', 'tharvill', 'jsamuels', 'jthiltge', 'root' ]
+	$sshAdmins = [ 'gattebury', 'clundst', 'bbockelm', 'tharvill', 'jsamuels', 'root' ]
 	$sshExtraAdmins = ''
 
 
