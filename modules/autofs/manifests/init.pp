@@ -5,8 +5,6 @@
 #
 class autofs {
 
-#   include chroot5::params
-
 	package { autofs: name => "autofs", ensure => present }
 
 	$auto_master = '/etc/auto.master'

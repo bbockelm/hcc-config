@@ -35,22 +35,22 @@ define chroot::mount (
     selinux_ignore_defaults => true,
   }
 
-#  mount { "$name/opt/osg/data":
-#    device  => 'hcc-gridnfs:/export/osg/data',
-#    fstype  => 'nfs',
-#    ensure  => mounted,
-#    options => 'nfsvers=3,rw,noatime,hard,intr,rsize=32768,wsize=32768',
-#    atboot  => true,
-#    require => File["$name/opt/osg/data"],
-#  }
-#  mount { "$name/opt/osg/app":
-#    device  => 'hcc-gridnfs:/export/osg/app',
-#    fstype  => 'nfs',
-#    ensure  => mounted,
-#    options => 'nfsvers=3,rw,noatime,hard,intr,rsize=32768,wsize=32768',
-#    atboot  => true,
-#    require => File["$name/opt/osg/app"],
-#  }
+  mount { "$name/opt/osg/data":
+    device  => 'hcc-gridnfs:/export/osg/data',
+    fstype  => 'nfs',
+    ensure  => absent,
+    options => 'nfsvers=3,rw,noatime,hard,intr,rsize=32768,wsize=32768',
+    atboot  => true,
+    require => File["$name/opt/osg/data"],
+  }
+  mount { "$name/opt/osg/app":
+    device  => 'hcc-gridnfs:/export/osg/app',
+    fstype  => 'nfs',
+    ensure  => absent,
+    options => 'nfsvers=3,rw,noatime,hard,intr,rsize=32768,wsize=32768',
+    atboot  => true,
+    require => File["$name/opt/osg/app"],
+  }
   mount { "$name/home":
     device  => 't3-nfs:/export/home',
     fstype  => 'nfs',
