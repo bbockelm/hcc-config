@@ -25,11 +25,11 @@ SYSTEM_PERIODIC_HOLD = \
 # Report why the stupid thing went on hold.
 SYSTEM_PERIODIC_HOLD_REASON = strcat("Job in status ", JobStatus, " put on hold by SYSTEM_PERIODIC_HOLD due to ", ifThenElse(isUndefined(DiskUsage) || DiskUsage < 100000000, strcat("memory usage ", ResidentSetSize), strcat("disk usage ", DiskUsage)), ".")
 
-# forceful removal of running after 3 days, held jobs after 6 hours,
+# forceful removal of running after 9 days, held jobs after 6 hours,
 # and anything trying to run more than 10 times
 SYSTEM_PERIODIC_REMOVE = \
    (JobStatus == 5 && CurrentTime - EnteredCurrentStatus > 3600*6) || \
-   (JobStatus == 2 && CurrentTime - EnteredCurrentStatus > 3600*24*4) || \
+   (JobStatus == 2 && CurrentTime - EnteredCurrentStatus > 3600*24*9) || \
    (JobStatus == 5 && JobRunCount >= 10) || \
    (JobStatus == 5 && HoldReasonCode =?= 14 && HoldReasonSubCode =?= 2)
 
