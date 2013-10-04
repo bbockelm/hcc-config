@@ -72,7 +72,7 @@ nrpe_group=nrpe
 #
 # NOTE: This option is ignored if NRPE is running under either inetd or xinetd
 
-allowed_hosts=127.0.0.1,red-mon.unl.edu,172.16.200.3,hcc-jchen.unl.edu
+allowed_hosts=127.0.0.1,red-mon.unl.edu,172.16.200.3
  
 
 
@@ -198,6 +198,7 @@ command[check_total_procs]=/usr/lib64/nagios/plugins/check_procs -w 150 -c 200
 
 
 ### DISK CHECKS
+command[check_space_all]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -A -i /mnt/hadoop -i /cvmfs* -i /chroot* -i /hadoop-data.* -i /opt/kickstart
 command[check_space_root]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -p /
 command[check_space_var]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -p /var
 command[check_space_scratch]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -p /scratch

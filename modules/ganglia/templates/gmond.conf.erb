@@ -22,7 +22,7 @@ globals {
   host_tmax = 20 /*secs */
   cleanup_threshold = 300 /*secs */
   gexec = no
-  send_metadata_interval = 300 /*secs */
+  send_metadata_interval = 60 /*secs */
 }
 
 /*
@@ -218,6 +218,11 @@ collection_group {
     name = "cpu_wio"
     value_threshold = "1.0"
     title = "CPU wio"
+  }
+  metric {
+    name = "cpu_steal"
+    value_threshold = "1.0"
+    title = "CPU steal"
   }
   /* The next two metrics are optional if you want more detail...
      ... since they are accounted for in cpu_system.

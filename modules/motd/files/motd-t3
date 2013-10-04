@@ -12,7 +12,7 @@
 
 		CRAB: source /opt/CRAB/CRAB_2_9_1/crab.sh
 
-		CMSSW: source /opt/osg/app/cmssoft/cms/cmsset_default.sh
+		CMSSW: source /cvmfs/cms.cern.ch/cmsset_default.sh
 
 
    You can access our CMS data from any Internet connected computer;
