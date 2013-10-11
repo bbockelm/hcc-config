@@ -336,8 +336,8 @@ node 'hcc-jenny.unl.edu' inherits red-public {
 	include ganglia
 }
 
-node 'hcc-jingchao.unl.edu' inherits red-public {
-	$sshExtraAdmins = [ 'jingchao' ]
+node 'hcc-jingchao.unl.edu', 'hcc-jingchao2.unl.edu' inherits red-public {
+	$sshExtraAdmins = [ 'jingchao', 'gattebur' ]
 	$sudoExtraAdmins = [ 'jingchao' ]
 	include general
 	include ganglia
