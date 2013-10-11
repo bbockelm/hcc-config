@@ -7,7 +7,7 @@
 ##############################################################################
 
 
-auth       required     pam_yubico.so id=5754 key=6dR0B3hlHxuLP/zgiaCN+jx685g= debug ldap_uri=<% users_ldap_servers.each do |ldap| %>ldaps://<%= ldap %>,<% end %> ldapdn=ou=People,<%= users_ldap_basedn %> user_attr=uid yubi_attr=inetSubscriberAccountId
+auth       sufficient     pam_yubico.so id=5754 key=6dR0B3hlHxuLP/zgiaCN+jx685g= debug ldap_uri=<% users_ldap_servers.each do |ldap| %>ldaps://<%= ldap %>,<% end %> ldapdn=ou=People,<%= users_ldap_basedn %> user_attr=uid yubi_attr=inetSubscriberAccountId
 auth       include      system-auth
 account    required     pam_nologin.so
 account    include      system-auth
