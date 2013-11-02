@@ -11,6 +11,24 @@ node 'hcc-schorr-ns1.unl.edu' inherits red-public {
     include nrpe
 }
 
+node 'hcc-cvmfs.unl.edu' inherits red-public {
+    $sshExtraAdmins = [ 'dykstra' ]
+    $sudoExtraAdmins = [ 'dykstra' ]
+	$yum_extrarepo = [ 'epel', 'hcc', 'osg', ]
+    include general
+    include ganglia
+    include nrpe
+}
+
+node 'hcc-class.unl.edu' inherits red-public {
+    $sshExtraAdmins = [ 'acaprez', 'dswanson' ]
+    $sudoExtraAdmins = [ 'acaprez', 'dswanson' ]
+	$yum_extrarepo = [ 'epel', 'hcc', 'osg', ]
+    include general
+    include ganglia
+    include nrpe
+}
+
 node 'phedex.unl.edu' inherits red-public {
 	$mountsHDFS = true
    $isPHEDEX = true   
@@ -67,6 +85,8 @@ node 'hcc-crabserver.unl.edu' inherits red-public {
 	$sshExtraAdmins = [ 'belforte', 'letts', 'spadhi', 'crab', 'lolass' ]
 	$sudoExtraAdmins = [ 'belforte', 'letts', 'crab', 'lolass' ]
 	$users_ldap_servers = [ 'red-ldap1.unl.edu', 'red-ldap2.unl.edu' ]
+    $gangliaClusterName = 'crab-infrastructure'
+    $gangliaUDPSendChannel = [ 'red-mon.unl.edu', '8652' ]
 
 	include general
 
@@ -181,7 +201,7 @@ node 'hcc-gridnfs.red.hcc.unl.edu' inherits red-private {
 }
 
 node 't2.unl.edu' inherits red-public {
-	$sshExtraAdmins = [ 'acaprez', 'jwang', 'dweitzel', 'bbockelm' ]
+	$sshExtraAdmins = [ 'acaprez', 'jwang', 'dweitzel', 'bbockelm', 'git' ]
 	$sudoExtraAdmins = [ 'acaprez', 'tharvill', 'jsamuels', 'jwang', 'dweitzel', 'bbockelm' ]
 
 	include general
@@ -332,6 +352,13 @@ node 'hcc-andrew.unl.edu' inherits red-public {
 node 'hcc-jenny.unl.edu' inherits red-public {
 	$sshExtraAdmins = [ 'jennyshao' ]
 	$sudoExtraAdmins = [ 'jennyshao' ]
+	include general
+	include ganglia
+}
+
+node 'hcc-marian.unl.edu' inherits red-public {
+	$sshExtraAdmins = [ 'zvada' ]
+	$sudoExtraAdmins = [ 'zvada' ]
 	include general
 	include ganglia
 }

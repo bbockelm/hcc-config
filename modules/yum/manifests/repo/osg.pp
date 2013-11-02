@@ -49,7 +49,7 @@ class yum::repo::osg {
 
 		'osg-upcoming':
 			descr => "OSG Software for Enterprise Linux $lsbmajdistrelease - Upcoming - \$basearch",
-			mirrorlist => "http://repo.grid.iu.edu/mirror/osg/3.1/el$lsbmajdistrelease/osg-upcoming-release/\$basearch",
+#			mirrorlist => "http://repo.grid.iu.edu/mirror/osg/3.1/el$lsbmajdistrelease/osg-upcoming-release/\$basearch",
 			baseurl => "http://t2.unl.edu/osg/upcoming/el$lsbmajdistrelease/release/\$basearch",
 			enabled => 1,
 		 	gpgcheck => 1,
